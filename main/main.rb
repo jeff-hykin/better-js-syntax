@@ -9,16 +9,7 @@ require_relative './tokens.rb'
 # create grammar!
 # 
 # 
-grammar = Grammar.new(
-    name: "JavaScript",
-    scope_name: "source.js",
-    fileTypes: [
-        "js",
-        "jsx",
-        "mjs",
-    ],
-    version: "",
-)
+grammar = Grammar.fromTmLanguage(File.join(__dir__, "modified.tmLanguage.json"))
 
 # 
 #
@@ -26,10 +17,7 @@ grammar = Grammar.new(
 #
 # 
     grammar[:$initial_context] = [
-        :comments,
-        :string,
-        :variable,
-        # (add more stuff here) (variables, strings, numbers)
+        :self,
     ]
 
 # 
@@ -45,24 +33,40 @@ grammar = Grammar.new(
 # 
 # basic patterns
 # 
-    grammar[:variable] = Pattern.new(
-        match: variable,
-        tag_as: "variable.other",
-    )
+    def specialTemplate(keyword, source)
+        PatternRange.new(
+            tag_as: source,
+            start_pattern: Pattern.new(
+                    zeroOrMoreOf(match: @space, dont_back_track?: true).then(
+                        lookBehindToAvoid(@standard_character)
+                    ).then(
+                        match: /#{keyword}/,
+                        tag_as: "markup.inline.raw.#{keyword}",
+                    ).zeroOrMoreOf(match: @space, dont_back_track?: true).then(
+                        match: /`/,
+                        tag_as: "punctuation.definition.string.template markup.inline.raw.#{keyword}.string"
+                    ),
+                ),
+            end_pattern: Pattern.new(
+                    match: /`/,
+                    tag_as: "punctuation.definition.string.template markup.inline.raw.#{keyword}.string"
+                ),
+            includes: [
+                :'template-substitution-element',
+                :'string-character-escape',
+                source,
+            ],
+        )
+    end
     
-    # basic pattern example
-    grammar[:line_continuation_character] = Pattern.new(
-        match: /\\\n/,
-        tag_as: "constant.character.escape.line-continuation",
-    )
-
-# 
-# imports
-# 
-    grammar.import(PathFor[:pattern]["comments"])
-    grammar.import(PathFor[:pattern]["string"])
-    grammar.import(PathFor[:pattern]["numeric_literal"])
-
+    grammar[:string] = [
+        :'qstring-single',
+        :'qstring-double',
+        specialTemplate("html", "text.html.basic#template-html"),
+        specialTemplate("css", "source.css"),
+        :'template',
+    ]
+    
 #
 # Save
 #
