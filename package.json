@@ -18,7 +18,11 @@
     "author": {
         "name": "Jeff Hykin"
     },
-    "publisher": "jeff.hykin",
+    "publisher": "jeff-hykin",
+    "repository": {
+		"type": "git",
+		"url": "https://github.com/jeff-hykin/better-js-syntax.git"
+	},
     "contributes": {
         "grammars": [
             {
