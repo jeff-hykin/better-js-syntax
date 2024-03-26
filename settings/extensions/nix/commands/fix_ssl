@@ -39,7 +39,7 @@ then
         touch "$wgetrc_path"
     fi
     # check if already included
-    if ! { cat "$wgetrc_path" | grep -F "$SSL_CERT_FILE" 1>/dev/null 2>/dev/null }
+    if ! { cat "$wgetrc_path" | grep -F "$SSL_CERT_FILE" 1>/dev/null 2>/dev/null; }
     then
         # TODO: this probably wont work with spaces in the path (breaks if any parent folder of the project has space in the name)
         echo "
