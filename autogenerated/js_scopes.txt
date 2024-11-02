@@ -55,7 +55,9 @@ keyword.control.as.js
 keyword.control.conditional.js
 keyword.control.default.js
 keyword.control.export.js
-keyword.control.flow.js
+keyword.control.flow.await.js
+keyword.control.flow.return.js
+keyword.control.flow.yield.js
 keyword.control.from.js
 keyword.control.import.js
 keyword.control.js

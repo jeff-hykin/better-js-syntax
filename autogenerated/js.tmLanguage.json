@@ -596,7 +596,7 @@
           "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(break|continue|do|goto|while)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
         },
         {
-          "name": "keyword.control.flow.js",
+          "name": "keyword.control.flow.return.js",
           "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(return)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
         },
         {
@@ -1481,14 +1481,14 @@
     "expression-operators": {
       "patterns": [
         {
-          "name": "keyword.control.flow.js",
+          "name": "keyword.control.flow.await.js",
           "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(await)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
         },
         {
           "begin": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(yield)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))(?=\\s*\\/\\*([^\\*]|(\\*[^\\/]))*\\*\\/\\s*\\*)",
           "beginCaptures": {
             "1": {
-              "name": "keyword.control.flow.js"
+              "name": "keyword.control.flow.yield.js"
             }
           },
           "end": "\\*",
@@ -1507,7 +1507,7 @@
           "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(yield)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))(?:\\s*(\\*))?",
           "captures": {
             "1": {
-              "name": "keyword.control.flow.js"
+              "name": "keyword.control.flow.yield.js"
             },
             "2": {
               "name": "keyword.generator.asterisk.js"
@@ -2125,13 +2125,13 @@
             },
             {
               "name": "string.regexp.js",
-              "begin": "(?<=\\))\\s*\\/(?![\\/*])(?=(?:[^\\/\\\\\\[]|\\\\.|\\[([^\\]\\\\]|\\\\.)+\\])+\\/([gimsuy]+|(?![\\/\\*])|(?=\\/\\*))(?!\\s*[a-zA-Z0-9_$]))",
+              "begin": "(?<=\\))\\s*\\/(?![\\/*])(?=(?:[^\\/\\\\\\[]|\\\\.|\\[([^\\]\\\\]|\\\\.)+\\])+\\/([dgimsuy]+|(?![\\/\\*])|(?=\\/\\*))(?!\\s*[a-zA-Z0-9_$]))",
               "beginCaptures": {
                 "0": {
                   "name": "punctuation.definition.string.begin.js"
                 }
               },
-              "end": "(/)([gimsuy]*)",
+              "end": "(/)([dgimsuy]*)",
               "endCaptures": {
                 "1": {
                   "name": "punctuation.definition.string.end.js"
@@ -4065,13 +4065,13 @@
       "patterns": [
         {
           "name": "string.regexp.js",
-          "begin": "(?<!\\+\\+|--|})(?<=[=(:,\\[?+!]|^return|[^\\._$[:alnum:]]return|^case|[^\\._$[:alnum:]]case|=>|&&|\\|\\||\\*\\/)\\s*(\\/)(?![\\/*])(?=(?:[^\\/\\\\\\[\\()]|\\\\.|\\[([^\\]\\\\]|\\\\.)+\\]|\\(([^\\)\\\\]|\\\\.)+\\))+\\/([gimsuy]+|(?![\\/\\*])|(?=\\/\\*))(?!\\s*[a-zA-Z0-9_$]))",
+          "begin": "(?<!\\+\\+|--|})(?<=[=(:,\\[?+!]|^return|[^\\._$[:alnum:]]return|^case|[^\\._$[:alnum:]]case|=>|&&|\\|\\||\\*\\/)\\s*(\\/)(?![\\/*])(?=(?:[^\\/\\\\\\[\\()]|\\\\.|\\[([^\\]\\\\]|\\\\.)+\\]|\\(([^\\)\\\\]|\\\\.)+\\))+\\/([dgimsuy]+|(?![\\/\\*])|(?=\\/\\*))(?!\\s*[a-zA-Z0-9_$]))",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.string.begin.js"
             }
           },
-          "end": "(/)([gimsuy]*)",
+          "end": "(/)([dgimsuy]*)",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.string.end.js"
@@ -4088,13 +4088,13 @@
         },
         {
           "name": "string.regexp.js",
-          "begin": "((?<![_$[:alnum:])\\]]|\\+\\+|--|}|\\*\\/)|((?<=^return|[^\\._$[:alnum:]]return|^case|[^\\._$[:alnum:]]case))\\s*)\\/(?![\\/*])(?=(?:[^\\/\\\\\\[]|\\\\.|\\[([^\\]\\\\]|\\\\.)+\\])+\\/([gimsuy]+|(?![\\/\\*])|(?=\\/\\*))(?!\\s*[a-zA-Z0-9_$]))",
+          "begin": "((?<![_$[:alnum:])\\]]|\\+\\+|--|}|\\*\\/)|((?<=^return|[^\\._$[:alnum:]]return|^case|[^\\._$[:alnum:]]case))\\s*)\\/(?![\\/*])(?=(?:[^\\/\\\\\\[]|\\\\.|\\[([^\\]\\\\]|\\\\.)+\\])+\\/([dgimsuy]+|(?![\\/\\*])|(?=\\/\\*))(?!\\s*[a-zA-Z0-9_$]))",
           "beginCaptures": {
             "0": {
               "name": "punctuation.definition.string.begin.js"
             }
           },
-          "end": "(/)([gimsuy]*)",
+          "end": "(/)([dgimsuy]*)",
           "endCaptures": {
             "1": {
               "name": "punctuation.definition.string.end.js"
@@ -4409,7 +4409,7 @@
           "include": "#qstring-double"
         },
         {
-          "begin": "(?:\\s)*+(?<!\\w)(html)(?:\\s)*+(`)",
+          "begin": "(?:(?:\\s*+)(?<!\\w)(html)(?:\\s*+)(`))",
           "end": "`",
           "beginCaptures": {
             "1": {
@@ -4438,7 +4438,7 @@
           ]
         },
         {
-          "begin": "(?:\\s)*+(?<!\\w)(css)(?:\\s)*+(`)",
+          "begin": "(?:(?:\\s*+)(?<!\\w)(css)(?:\\s*+)(`))",
           "end": "`",
           "beginCaptures": {
             "1": {
@@ -4647,7 +4647,7 @@
           }
         },
         {
-          "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(window|global)\\b(?!\\$)",
+          "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(window|global|globalThis|self)\\b(?!\\$)",
           "captures": {
             "1": {
               "name": "support.type.object.$1.js"

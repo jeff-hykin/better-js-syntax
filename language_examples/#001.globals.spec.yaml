@@ -1,0 +1,18 @@
+- source: global
+  scopes:
+    - support.type.object.global
+- source: window
+  scopes:
+    - support.type.object.window
+- source: globalThis
+  scopes:
+    - support.type.object.globalThis
+- source: self
+  scopes:
+    - support.type.object.self
+- source: notGlobal
+  scopesBegin:
+    - variable.other.readwrite
+- source: notWindow
+- source: notGlobalThis
+- source: notSelf
