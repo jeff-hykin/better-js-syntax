@@ -136,7 +136,7 @@
                     "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(break|continue|do|goto|while)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
                 },
                 {
-                    "name": "keyword.control.flow.js",
+                    "name": "keyword.control.flow.return.js",
                     "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(return)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
                 },
                 {
@@ -3157,14 +3157,14 @@
         "expression-operators": {
             "patterns": [
                 {
-                    "name": "keyword.control.flow.js",
+                    "name": "keyword.control.flow.await.js",
                     "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(await)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
                 },
                 {
                     "begin": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(yield)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))(?=\\s*\\/\\*([^\\*]|(\\*[^\\/]))*\\*\\/\\s*\\*)",
                     "beginCaptures": {
                         "1": {
-                            "name": "keyword.control.flow.js"
+                            "name": "keyword.control.flow.yield.js"
                         }
                     },
                     "end": "\\*",
@@ -3183,7 +3183,7 @@
                     "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(yield)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))(?:\\s*(\\*))?",
                     "captures": {
                         "1": {
-                            "name": "keyword.control.flow.js"
+                            "name": "keyword.control.flow.yield.js"
                         },
                         "2": {
                             "name": "keyword.generator.asterisk.js"
