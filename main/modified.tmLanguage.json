@@ -3649,10 +3649,10 @@
                     }
                 },
                 {
-                    "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(window|global)\\b(?!\\$)",
+                    "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(window|global|globalThis|self)\\b(?!\\$)",
                     "captures": {
                         "1": {
-                            "name": "support.type.object.$1.js"
+                            "name": "support.type.object.$1.global.js"
                         }
                     }
                 }
