@@ -11,12 +11,16 @@ git_checkout () {
         git switch "$@"
         return 
     }
-    printf '%s' "$__temp_var__branches" | grep "$2" 2>/dev/null 1>/dev/null && {
+    # if second arg exists
+    if [ -n "$2" ]
+    then
+        printf '%s' "$__temp_var__branches" | grep "$2" 2>/dev/null 1>/dev/null && {
+            unset __temp_var__branches
+            git switch "$@"
+            return
+        }
         unset __temp_var__branches
-        git switch "$@"
-        return
-    }
-    unset __temp_var__branches
+    fi
     # 
     # otherwise use checkout
     # 
@@ -24,17 +28,50 @@ git_checkout () {
     return
 }
 
+git_checkout_pr () {
+    pr_number="$1"
+    if [ -z "$pr_number" ]
+    then
+        echo "whats the PR number?"
+        read pr_number
+    fi
+    temp_pr_name='@__temp__/pull_request'
+    git_delete_branch "$temp_pr_name"
+    git fetch origin "pull/$pr_number/head:$temp_pr_name"
+    git checkout "$temp_pr_name"
+}
+
 git_commit_hashes () {
     git log --reflog --oneline | sed -e 's/ .*//'
 }
 
 git_log () {
-    git log --oneline
+    git --no-pager log --reverse --first-parent --date=short --pretty=format:"%Cblue%ad %h%Cgreen %s %Creset%d" "$@"
 }
 
 git_current_commit_hash () {
     # https://stackoverflow.com/questions/949314/how-to-retrieve-the-hash-for-the-current-commit-in-git
     git rev-parse HEAD
+}
+
+git_oldest_commit_hash () {
+    git log --reverse --oneline | head -n1 | sed -e 's/ .*//' 
+}
+
+git_squash_all () {
+    git reset --soft $(git_oldest_commit_hash)
+}
+
+git_squash_to () {
+    commit_hash="$1"
+    commit_message="$2"
+    git reset --soft "$commit_hash" && git add -A && git commit -m "$commit_message" && echo "squash complete"
+}
+
+git_squash () {
+    args="$@"
+    git reset --soft HEAD~2 && git add -A && git commit -m "$args" && echo "squash complete"
+    git_log | tail -n5
 }
 
 # 
@@ -92,6 +129,34 @@ git_keep_theirs () { # git keep theirs
     git checkout --theirs .
     git add -u
     git commit -m "_Accepting all incoming changes $@"
+}
+
+git_add_upstream () {
+    remote_name="$1"
+    remote_url="$2"
+    if [ -z "$remote_name" ]
+    then
+        echo "what should the upstream source be called?"
+        read remote_name
+    fi
+    if [ -z "$remote_url" ]
+    then
+        echo "what is the url to the upstream source?"
+        read remote_url
+    fi
+    
+    git remote add "$remote_name" "$remote_url"
+}
+
+git_change_origin () {
+    remote_url="$1"
+    if [ -z "$remote_url" ]
+    then
+        echo "what is the url to the upstream source?"
+        read remote_url
+    fi
+    # change origin
+    git remote set-url "origin" "$remote_url"
 }
 
 # 
@@ -306,6 +371,19 @@ git_delete_tag () {
     git tag --delete "$tag_name"
 }
 
+git_list_tags () {
+    pattern="$1"
+    # if no args, list all 
+    if [ -z "$pattern" ]
+    then
+        git tag | cat
+    # if pattern
+    else
+        # ex: "pattern*" for prefix search
+        git tag --list "$pattern" | cat
+    fi
+}
+
 # 
 # misc
 # 
@@ -333,7 +411,12 @@ git_delete_large_file () {
         exit 0
     fi
     
-    git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch '$filepath'" HEAD
+    oldest_commit_with_file="$(git log --all --pretty=format:%H -- "$filepath" | tail -n 1)"
+    
+    echo "$oldest_commit_with_file"
+    
+    rm -rf .git/refs/original/
+    FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch '$filepath'" "$oldest_commit_with_file"..HEAD
     echo 
     echo "Now you need to destroy everyone else's progress by force pushing if you want remote to have the fix"
     echo 
@@ -389,6 +472,59 @@ git_url_of_origin () {
     git config --get remote.origin.url
 }
 
+git_squash_to () {
+    commit_hash="$1"
+    commit_message="$2"
+    git reset --soft "$commit_hash" && git add -A && git commit -m "$commit_message" && echo "squash complete"
+}
+
+git_delete_submodule () {
+    the_path="$1"
+    if ! [ -d "$the_path" ]
+    then
+        echo "I don't see that folder/the_path. So this method might not work perfectly"
+        echo "press enter to continue, ctrl+C to cancel"
+        read A
+    fi
+    # git submodule deinit -f "$the_path"
+    rm -rf ".git/modules/$the_path"
+    git rm -f "$the_path"
+}
+
+git_list_exclusively_local_commits () {
+    git log --oneline --branches --not origin
+}
+
+git_push_all_branches_to_url () {
+    url="$1"
+    
+    temp_remote_name="@__temp_origin__"
+    git remote remove "$temp_remote_name" 2>/dev/null
+    # Add the target repository as a remote
+    git remote add "$temp_remote_name" "$url"
+
+    # Fetch the remote branches
+    git fetch "$temp_remote_name"
+    
+    # Try pushing
+    for branch in $(git branch -r | grep -v HEAD | grep -v "$temp_remote_name"); do
+        branch_name=${branch#*/}
+        
+        # Checkout each branch
+        if ! git checkout -b "$branch_name" "$branch" || git checkout "$branch_name"; then
+            break
+        fi
+
+        # Push the rewritten branch to the target repository
+        if ! git push "$temp_remote_name" "$branch_name"; then
+            echo "An error occurred while pushing branch: $branch_name"
+            break
+        fi
+    done
+    
+    git remote remove "$temp_remote_name"
+}
+
 # self submodule
 # git submodule add -b jirl --name "jirl" -- https://github.com/jeff-hykin/model_racer.git ./source/jirl
 
@@ -406,5 +542,7 @@ alias gb="git branch -a"
 alias gnb="git_new_branch"
 alias gd="git_delete_changes"
 alias gcp="git add -A;git stash"
+alias gct="git add -A;git stash"
 alias gpst="git stash pop;git add -A"
 alias gundo="git reset --soft HEAD~1"
+alias gurl="git_url_of_origin"
