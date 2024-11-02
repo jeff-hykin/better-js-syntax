@@ -2483,7 +2483,7 @@
                                     "name": "punctuation.definition.string.begin.js"
                                 }
                             },
-                            "end": "(/)([gimsuy]*)",
+                            "end": "(/)([dgimsuy]*)",
                             "endCaptures": {
                                 "1": {
                                     "name": "punctuation.definition.string.end.js"
