@@ -624,3 +624,6 @@ settings/home/.gitconfig
 settings/home/.mongorc.js
 settings/home/.ungitrc
 settings/home/.vuerc
+
+# not sure why this is being ignored inthe first place 
+!/main/html.modified.tmLanguage.json
