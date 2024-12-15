@@ -1,0 +1,626 @@
+- source: import
+  scopesBegin:
+    - meta.import
+  scopes:
+    - keyword.control.import
+- source: '{'
+  scopesBegin:
+    - meta.block
+  scopes:
+    - punctuation.definition.block
+- source: html
+  scopes:
+    - variable.other.readwrite.alias
+- source: '}'
+  scopes:
+    - punctuation.definition.block
+  scopesEnd:
+    - meta.block
+- source: from
+  scopes:
+    - keyword.control.from
+- source: '"'
+  scopesBegin:
+    - string.quoted.double
+  scopes:
+    - punctuation.definition.string.begin
+- source: 'https://esm.sh/gh/jeff-hykin/elemental@0.6.3/main/deno.js'
+- source: '"'
+  scopes:
+    - punctuation.definition.string.end
+  scopesEnd:
+    - string.quoted.double
+- source: import
+  scopes:
+    - keyword.control.import
+- source: '{'
+  scopesBegin:
+    - meta.block
+  scopes:
+    - punctuation.definition.block
+- source: css
+  scopes:
+    - variable.other.readwrite.alias
+- source: ','
+  scopes:
+    - punctuation.separator.comma
+- source: cx
+  scopes:
+    - variable.other.readwrite.alias
+- source: '}'
+  scopes:
+    - punctuation.definition.block
+  scopesEnd:
+    - meta.block
+- source: from
+  scopes:
+    - keyword.control.from
+- source: '"'
+  scopesBegin:
+    - string.quoted.double
+  scopes:
+    - punctuation.definition.string.begin
+- source: ../../main/helpers/css.bundle.js
+- source: '"'
+  scopes:
+    - punctuation.definition.string.end
+  scopesEnd:
+    - meta.import
+    - string.quoted.double
+- source: //
+  scopesBegin:
+    - comment.line.double-slash
+    - punctuation.definition.comment
+- source: //
+  scopesEnd:
+    - punctuation.definition.comment
+- source: ' Column'
+- source: //
+  scopes:
+    - punctuation.definition.comment
+  scopesEnd:
+    - comment.line.double-slash
+- source: const
+  scopesBegin:
+    - meta.var.expr
+  scopes:
+    - storage.type
+- source: columnClass
+  scopes:
+    - meta.var-single-variable.expr
+    - meta.definition.variable
+    - variable.other.constant
+- source: '='
+  scopes:
+    - keyword.operator.assignment
+- source: css
+  scopesBegin:
+    - source.css#rule-list-innards
+  scopes:
+    - markup.inline.raw.css
+- source: '`'
+  scopes:
+    - punctuation.definition.string.template
+    - markup.inline.raw.css.string
+- source: display
+  scopes:
+    - meta.property-name.css
+    - support.type.property-name.css
+- source: ':'
+  scopes:
+    - punctuation.separator.key-value.css
+- source: flex
+  scopes:
+    - meta.property-value.css
+    - support.constant.property-value.css
+- source: ;
+  scopes:
+    - punctuation.terminator.rule.css
+- source: flex-direction
+  scopes:
+    - meta.property-name.css
+    - support.type.property-name.css
+- source: ':'
+  scopes:
+    - punctuation.separator.key-value.css
+- source: column
+  scopes:
+    - meta.property-value.css
+    - support.constant.property-value.css
+- source: ;
+  scopes:
+    - punctuation.terminator.rule.css
+- source: transition
+  scopes:
+    - meta.property-name.css
+    - support.type.property-name.css
+- source: ':'
+  scopes:
+    - punctuation.separator.key-value.css
+- source: all
+  scopesBegin:
+    - meta.property-value.css
+  scopes:
+    - support.constant.property-value.css
+- source: '0.4'
+  scopesBegin:
+    - constant.numeric.css
+- source: s
+  scopes:
+    - keyword.other.unit.s.css
+  scopesEnd:
+    - constant.numeric.css
+- source: ease-in-out
+  scopes:
+    - support.constant.property-value.css
+- source: '0'
+  scopesBegin:
+    - constant.numeric.css
+- source: s
+  scopes:
+    - keyword.other.unit.s.css
+  scopesEnd:
+    - meta.property-value.css
+    - constant.numeric.css
+- source: ;
+  scopes:
+    - punctuation.terminator.rule.css
+- source: '`'
+  scopes:
+    - punctuation.definition.string.template
+    - markup.inline.raw.css.string
+  scopesEnd:
+    - meta.var.expr
+    - source.css#rule-list-innards
+- source: export
+  scopesBegin:
+    - meta.function
+  scopes:
+    - keyword.control.export
+- source: function
+  scopes:
+    - storage.type.function
+- source: Column
+  scopes:
+    - meta.definition.function
+    - entity.name.function
+- source: (
+  scopesBegin:
+    - meta.parameters
+  scopes:
+    - punctuation.definition.parameters.begin
+- source: '{'
+  scopesBegin:
+    - meta.parameter.object-binding-pattern
+  scopes:
+    - punctuation.definition.binding-pattern.object
+- source: verticalAlignment
+  scopes:
+    - variable.parameter
+- source: ','
+  scopes:
+    - punctuation.separator.comma
+- source: horizontalAlignment
+  scopes:
+    - variable.parameter
+- source: ','
+  scopes:
+    - punctuation.separator.comma
+- source: children
+  scopes:
+    - variable.parameter
+- source: ','
+  scopes:
+    - punctuation.separator.comma
+- source: ...
+  scopes:
+    - keyword.operator.rest
+- source: arg
+  scopes:
+    - variable.parameter
+- source: '}'
+  scopes:
+    - punctuation.definition.binding-pattern.object
+  scopesEnd:
+    - meta.parameter.object-binding-pattern
+- source: )
+  scopes:
+    - punctuation.definition.parameters.end
+  scopesEnd:
+    - meta.parameters
+- source: '{'
+  scopesBegin:
+    - meta.block
+  scopes:
+    - punctuation.definition.block
+- source: //
+  scopesBegin:
+    - comment.line.double-slash
+    - punctuation.definition.comment
+- source: //
+  scopesEnd:
+    - punctuation.definition.comment
+- source: ' class'
+- source: //
+  scopes:
+    - punctuation.definition.comment
+  scopesEnd:
+    - comment.line.double-slash
+- source: arg
+  scopes:
+    - variable.other.readwrite
+- source: '='
+  scopes:
+    - keyword.operator.assignment
+- source: setupClassStyles
+  scopes:
+    - meta.function-call
+    - entity.name.function
+- source: (
+  scopes:
+    - meta.brace.round
+- source: arg
+  scopes:
+    - variable.other.readwrite
+- source: )
+  scopes:
+    - meta.brace.round
+- source: arg
+  scopes:
+    - variable.other.object
+- source: .
+  scopes:
+    - punctuation.accessor
+- source: class
+  scopes:
+    - variable.other.property
+- source: '='
+  scopes:
+    - keyword.operator.assignment
+- source: combineClasses
+  scopes:
+    - meta.function-call
+    - entity.name.function
+- source: (
+  scopes:
+    - meta.brace.round
+- source: columnClass
+  scopes:
+    - variable.other.readwrite
+- source: ','
+  scopes:
+    - punctuation.separator.comma
+- source: arg
+  scopes:
+    - variable.other.object
+- source: .
+  scopes:
+    - punctuation.accessor
+- source: class
+  scopes:
+    - variable.other.property
+- source: )
+  scopes:
+    - meta.brace.round
+- source: //
+  scopesBegin:
+    - comment.line.double-slash
+    - punctuation.definition.comment
+- source: //
+  scopesEnd:
+    - punctuation.definition.comment
+- source: ' style'
+- source: //
+  scopes:
+    - punctuation.definition.comment
+  scopesEnd:
+    - comment.line.double-slash
+- source: const
+  scopesBegin:
+    - meta.var.expr
+  scopes:
+    - storage.type
+- source: justify
+  scopes:
+    - meta.var-single-variable.expr
+    - meta.definition.variable
+    - variable.other.constant
+- source: '='
+  scopes:
+    - keyword.operator.assignment
+- source: translateAlignment
+  scopes:
+    - meta.function-call
+    - entity.name.function
+- source: (
+  scopes:
+    - meta.brace.round
+- source: verticalAlignment
+  scopes:
+    - variable.other.readwrite
+- source: '||'
+  scopes:
+    - keyword.operator.logical
+- source: '"'
+  scopesBegin:
+    - string.quoted.double
+  scopes:
+    - punctuation.definition.string.begin
+- source: top
+- source: '"'
+  scopes:
+    - punctuation.definition.string.end
+  scopesEnd:
+    - string.quoted.double
+- source: )
+  scopes:
+    - meta.brace.round
+- source: const
+  scopes:
+    - storage.type
+- source: align
+  scopes:
+    - meta.var-single-variable.expr
+    - meta.definition.variable
+    - variable.other.constant
+- source: '='
+  scopes:
+    - keyword.operator.assignment
+- source: translateAlignment
+  scopes:
+    - meta.function-call
+    - entity.name.function
+- source: (
+  scopes:
+    - meta.brace.round
+- source: horizontalAlignment
+  scopes:
+    - variable.other.readwrite
+- source: '||'
+  scopes:
+    - keyword.operator.logical
+- source: '"'
+  scopesBegin:
+    - string.quoted.double
+  scopes:
+    - punctuation.definition.string.begin
+- source: left
+- source: '"'
+  scopes:
+    - punctuation.definition.string.end
+  scopesEnd:
+    - string.quoted.double
+- source: )
+  scopes:
+    - meta.brace.round
+- source: const
+  scopes:
+    - storage.type
+- source: verticalText
+  scopes:
+    - meta.var-single-variable.expr
+    - meta.definition.variable
+    - variable.other.constant
+- source: '='
+  scopes:
+    - keyword.operator.assignment
+- source: verticalAlignment
+  scopes:
+    - variable.other.readwrite
+- source: '=='
+  scopes:
+    - keyword.operator.comparison
+- source: '"'
+  scopesBegin:
+    - string.quoted.double
+  scopes:
+    - punctuation.definition.string.begin
+- source: center
+- source: '"'
+  scopes:
+    - punctuation.definition.string.end
+  scopesEnd:
+    - string.quoted.double
+- source: '?'
+  scopes:
+    - keyword.operator.ternary
+- source: '"'
+  scopesBegin:
+    - string.quoted.double
+  scopes:
+    - punctuation.definition.string.begin
+- source: middle
+- source: '"'
+  scopes:
+    - punctuation.definition.string.end
+  scopesEnd:
+    - string.quoted.double
+- source: ':'
+  scopes:
+    - keyword.operator.ternary
+- source: verticalAlignment
+  scopes:
+    - variable.other.readwrite
+- source: //
+  scopesBegin:
+    - comment.line.double-slash
+  scopes:
+    - punctuation.definition.comment
+- source: ' css is a special breed of inconsistent'
+  scopesEnd:
+    - meta.var.expr
+    - comment.line.double-slash
+- source: arg
+  scopes:
+    - variable.other.readwrite
+- source: '='
+  scopes:
+    - keyword.operator.assignment
+- source: setupStyles
+  scopes:
+    - meta.function-call
+    - entity.name.function
+- source: (
+  scopes:
+    - meta.brace.round
+- source: arg
+  scopes:
+    - variable.other.readwrite
+- source: ','
+  scopes:
+    - punctuation.separator.comma
+- source: '`'
+  scopesBegin:
+    - string.template
+  scopes:
+    - punctuation.definition.string.template.begin
+- source: '        display: flex;'
+- source: '        flex-direction: column;'
+- source: '        transition: all 0.4s ease-in-out 0s;'
+- source: '        justify-content: '
+- source: '${'
+  scopesBegin:
+    - meta.template.expression
+  scopes:
+    - punctuation.definition.template-expression.begin
+- source: justify
+  scopes:
+    - meta.embedded.line
+    - variable.other.readwrite
+- source: '}'
+  scopes:
+    - punctuation.definition.template-expression.end
+  scopesEnd:
+    - meta.template.expression
+- source: ;
+- source: '        align-items: '
+- source: '${'
+  scopesBegin:
+    - meta.template.expression
+  scopes:
+    - punctuation.definition.template-expression.begin
+- source: align
+  scopes:
+    - meta.embedded.line
+    - variable.other.readwrite
+- source: '}'
+  scopes:
+    - punctuation.definition.template-expression.end
+  scopesEnd:
+    - meta.template.expression
+- source: ;
+- source: '        text-align: '
+- source: '${'
+  scopesBegin:
+    - meta.template.expression
+  scopes:
+    - punctuation.definition.template-expression.begin
+- source: horizontalAlignment
+  scopes:
+    - meta.embedded.line
+    - variable.other.readwrite
+- source: '}'
+  scopes:
+    - punctuation.definition.template-expression.end
+  scopesEnd:
+    - meta.template.expression
+- source: ;
+- source: '        vertical-align: '
+- source: '${'
+  scopesBegin:
+    - meta.template.expression
+  scopes:
+    - punctuation.definition.template-expression.begin
+- source: verticalText
+  scopes:
+    - meta.embedded.line
+    - variable.other.readwrite
+- source: '}'
+  scopes:
+    - punctuation.definition.template-expression.end
+  scopesEnd:
+    - meta.template.expression
+- source: ;
+- source: '`'
+  scopes:
+    - punctuation.definition.string.template.end
+  scopesEnd:
+    - string.template
+- source: )
+  scopes:
+    - meta.brace.round
+- source: //
+  scopesBegin:
+    - comment.line.double-slash
+    - punctuation.definition.comment
+- source: //
+  scopesEnd:
+    - punctuation.definition.comment
+- source: ' element'
+- source: //
+  scopes:
+    - punctuation.definition.comment
+  scopesEnd:
+    - comment.line.double-slash
+- source: return
+  scopes:
+    - keyword.control.flow.return
+- source: <
+  scopesBegin:
+    - meta.tag
+  scopes:
+    - punctuation.definition.tag.begin
+- source: div
+  scopes:
+    - entity.name.tag
+- source: '{'
+  scopesBegin:
+    - meta.tag.attributes
+  scopes:
+    - punctuation.section.embedded.begin
+- source: ...
+  scopesBegin:
+    - meta.embedded.expression
+  scopes:
+    - keyword.operator.spread
+- source: arg
+  scopes:
+    - variable.other.readwrite
+  scopesEnd:
+    - meta.embedded.expression
+- source: '}'
+  scopes:
+    - punctuation.section.embedded.end
+  scopesEnd:
+    - meta.tag.attributes
+- source: '>'
+  scopes:
+    - punctuation.definition.tag.end
+- source: '{'
+  scopesBegin:
+    - meta.jsx.children
+  scopes:
+    - punctuation.section.embedded.begin
+- source: children
+  scopes:
+    - meta.embedded.expression
+    - variable.other.readwrite
+- source: '}'
+  scopes:
+    - punctuation.section.embedded.end
+  scopesEnd:
+    - meta.jsx.children
+- source: </
+  scopes:
+    - punctuation.definition.tag.begin
+- source: div
+  scopes:
+    - entity.name.tag
+- source: '>'
+  scopes:
+    - punctuation.definition.tag.end
+  scopesEnd:
+    - meta.tag
+- source: '}'
+  scopes:
+    - punctuation.definition.block
