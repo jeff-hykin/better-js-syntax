@@ -227,7 +227,7 @@ punctuation.separator.parameter.js
 punctuation.separator.pipe.jsdoc
 punctuation.terminator.statement.js
 punctuation.whitespace.comment.leading.js
-source.css.js
+source.css#rule-list-innards.js
 source.embedded.js
 storage.modifier.async.js
 storage.modifier.js

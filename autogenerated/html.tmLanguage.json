@@ -7255,7 +7255,7 @@
                   "name": "punctuation.definition.string.template.js markup.inline.raw.css.string.js"
                 }
               },
-              "name": "source.css.js",
+              "name": "source.css#rule-list-innards.js",
               "patterns": [
                 {
                   "include": "#template-substitution-element"
@@ -7264,7 +7264,7 @@
                   "include": "#string-character-escape"
                 },
                 {
-                  "include": "source.css"
+                  "include": "source.css#rule-list-innards"
                 }
               ]
             },
