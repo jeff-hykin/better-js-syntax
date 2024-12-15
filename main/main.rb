@@ -76,7 +76,7 @@ grammar = Grammar.fromTmLanguage(File.join(__dir__, "modified.tmLanguage.json"))
         :'qstring-single',
         :'qstring-double',
         specialTemplate("html", "text.html.basic#template-html"),
-        specialTemplate("css", "source.css"),
+        specialTemplate("css", "source.css#rule-list-innards"),
         :'template',
     ]
     
